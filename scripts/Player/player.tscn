@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdydb80mferdi"]
+[gd_scene load_steps=8 format=3 uid="uid://bdydb80mferdi"]
 
+[ext_resource type="Script" path="res://scripts/Player/Player.gd" id="1_i2vld"]
 [ext_resource type="Shader" path="res://scripts/Player/Body.gdshader" id="1_tuygn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_of8jd"]
@@ -23,6 +24,7 @@ height = 0.05
 [node name="Player" type="Node3D"]
 
 [node name="PlayerBody" type="CharacterBody3D" parent="."]
+script = ExtResource("1_i2vld")
 
 [node name="BodyMesh" type="MeshInstance3D" parent="PlayerBody"]
 mesh = SubResource("CapsuleMesh_ucv27")

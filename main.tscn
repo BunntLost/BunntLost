@@ -1,192 +1,27 @@
-[gd_scene load_steps=33 format=3 uid="uid://b8fd6ykycuo5y"]
+[gd_scene load_steps=5 format=3 uid="uid://dv0icnr8cmce8"]
 
-[ext_resource type="Script" path="res://DirectionalLight3D.gd" id="1_o41ps"]
-[ext_resource type="Script" path="res://scripts/spin.gd" id="2_7luwn"]
-[ext_resource type="Shader" path="res://outline.gdshader" id="3_gtvun"]
-[ext_resource type="Texture2D" uid="uid://chi17fb3dyt6b" path="res://icon.svg" id="4_iowfd"]
-[ext_resource type="PackedScene" uid="uid://by541c22qdb8w" path="res://models/nature/Models/GLTF format/bed.glb" id="6_bwwia"]
-[ext_resource type="PackedScene" uid="uid://btufcb4ry0tiv" path="res://models/nature/Models/GLTF format/bed_floor.glb" id="7_5a481"]
-[ext_resource type="PackedScene" uid="uid://chh6a0r0g5eqp" path="res://models/nature/Models/GLTF format/bridge_center_stone.glb" id="8_1w0q6"]
-[ext_resource type="PackedScene" uid="uid://u23geoddfda8" path="res://models/nature/Models/GLTF format/bridge_center_stoneRound.glb" id="9_8nxxb"]
-[ext_resource type="PackedScene" uid="uid://db7o7gn04hjlb" path="res://models/nature/Models/GLTF format/bridge_center_wood.glb" id="10_6mbjb"]
-[ext_resource type="PackedScene" uid="uid://dktn1sayspu1b" path="res://models/nature/Models/GLTF format/bridge_center_woodRound.glb" id="11_k1lx0"]
-[ext_resource type="PackedScene" uid="uid://bnqtksxchhkxh" path="res://models/nature/Models/GLTF format/bridge_side_stone.glb" id="12_0fhwt"]
-[ext_resource type="PackedScene" uid="uid://e1amc2jxu5xv" path="res://models/nature/Models/GLTF format/bridge_side_stoneRound.glb" id="13_x2dm4"]
-[ext_resource type="PackedScene" uid="uid://bj0dirqfoefan" path="res://models/nature/Models/GLTF format/bridge_side_wood.glb" id="14_tpnee"]
-[ext_resource type="PackedScene" uid="uid://4rp6cqfet3ia" path="res://models/nature/Models/GLTF format/bridge_side_woodRound.glb" id="15_x0vls"]
-[ext_resource type="PackedScene" uid="uid://my4htiiicmyo" path="res://models/nature/Models/GLTF format/bridge_stone.glb" id="16_e3kt7"]
-[ext_resource type="PackedScene" uid="uid://derdv1wivvb2j" path="res://models/nature/Models/GLTF format/bridge_stoneNarrow.glb" id="17_xmapf"]
-[ext_resource type="PackedScene" uid="uid://c1uvvvsl2qr3a" path="res://models/nature/Models/GLTF format/bridge_stoneRound.glb" id="18_o17jr"]
-[ext_resource type="PackedScene" uid="uid://b2xps2ci3qgv1" path="res://models/nature/Models/GLTF format/bridge_stoneRoundNarrow.glb" id="19_vyk3x"]
-[ext_resource type="PackedScene" uid="uid://cxe62hmveixlp" path="res://models/nature/Models/GLTF format/bridge_wood.glb" id="20_3qbyw"]
-[ext_resource type="Script" path="res://scripts/camera.gd" id="20_hi6cn"]
+[ext_resource type="Script" path="res://camera_follow.gd" id="2_2bvk3"]
 [ext_resource type="PackedScene" uid="uid://bdydb80mferdi" path="res://scripts/Player/player.tscn" id="21_l2xu5"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_andoa"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_wt2gu"]
+size = Vector3(10, 0.1, 10)
 
-[sub_resource type="Sky" id="Sky_c02bc"]
-sky_material = SubResource("ProceduralSkyMaterial_andoa")
+[sub_resource type="BoxMesh" id="BoxMesh_oowo0"]
+size = Vector3(10, 0.1, 10)
 
-[sub_resource type="Environment" id="Environment_j45us"]
-background_mode = 1
-sky = SubResource("Sky_c02bc")
-ambient_light_source = 2
-ambient_light_color = Color(0.713726, 0.713726, 0.713726, 1)
-tonemap_mode = 2
-glow_enabled = true
+[node name="Main" type="Node2D"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xqpyn"]
-albedo_color = Color(0.117647, 0.737255, 0.45098, 1)
+[node name="Ground" type="Node3D" parent="."]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_1s8w4"]
-material = SubResource("StandardMaterial3D_xqpyn")
-size = Vector2(10, 10)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_wt2gu")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qp00u"]
-albedo_color = Color(0.588235, 0.423529, 0.423529, 1)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_oowo0")
 
-[sub_resource type="BoxMesh" id="BoxMesh_8smba"]
-material = SubResource("StandardMaterial3D_qp00u")
+[node name="Birb" parent="." instance=ExtResource("21_l2xu5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4irvy"]
-albedo_color = Color(0.301961, 0.607843, 0.901961, 1)
-
-[sub_resource type="PrismMesh" id="PrismMesh_ebc50"]
-material = SubResource("StandardMaterial3D_4irvy")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i6itp"]
-render_priority = 0
-shader = ExtResource("3_gtvun")
-shader_parameter/depth_threshold = 0.05
-shader_parameter/reverse_depth_threshold = 0.25
-shader_parameter/normal_threshold = 0.6
-shader_parameter/darken_amount = 0.2
-shader_parameter/lighten_amount = 1.5
-shader_parameter/normal_edge_bias = Vector3(-1, -1, -1)
-shader_parameter/light_direction = Vector3(-0.78066, -0.441146, 0.442675)
-
-[sub_resource type="QuadMesh" id="QuadMesh_egxnj"]
-material = SubResource("ShaderMaterial_i6itp")
-flip_faces = true
-size = Vector2(2, 2)
-
-[node name="Main" type="Node3D"]
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-texture_filter = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch = true
-stretch_shrink = 5
-
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(384, 216)
-render_target_update_mode = 4
-
-[node name="Level" type="Node3D" parent="SubViewportContainer/SubViewport"]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/Level"]
-environment = SubResource("Environment_j45us")
-
-[node name="Floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Level"]
-mesh = SubResource("PlaneMesh_1s8w4")
-
-[node name="Box2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Level"]
-transform = Transform3D(0.998284, 0, 0.0585571, 0, 1, 0, -0.0585571, 0, 0.998284, 1.43992, 0.460577, -2.23042)
-mesh = SubResource("BoxMesh_8smba")
-skeleton = NodePath("../../../..")
-
-[node name="Box3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Level"]
-transform = Transform3D(0.823047, 0, 0.567973, 0, 1, 0, -0.567973, 0, 0.823047, -0.042053, 0.307314, -2.44946)
-mesh = SubResource("BoxMesh_8smba")
-skeleton = NodePath("../../../..")
-
-[node name="Box4" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Level"]
-transform = Transform3D(0.815432, -0.0950639, 0.570993, 0.0778709, 0.995471, 0.0545278, -0.573591, 0, 0.819142, 2.69142, 1.8129, -2.81077)
-mesh = SubResource("BoxMesh_8smba")
-skeleton = NodePath("../../../..")
-
-[node name="Node3D" type="Node3D" parent="SubViewportContainer/SubViewport/Level"]
-transform = Transform3D(-0.486694, -0.382724, 0.769354, 0, 0.895055, 0.443336, -0.858288, 0.217026, -0.436276, 0, 10, 0)
-script = ExtResource("2_7luwn")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Level/Node3D"]
-transform = Transform3D(1, -1.49012e-08, 2.98023e-08, 1.49012e-08, 1, 0, 0, 0, 1, 0, 0, 0)
-shadow_enabled = true
-script = ExtResource("1_o41ps")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Level"]
-transform = Transform3D(0.931609, 0, 0.363463, 0, 1, 0, -0.363463, 0, 0.931609, 3.38956, 0.491872, 2.96824)
-mesh = SubResource("PrismMesh_ebc50")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Level"]
-transform = Transform3D(0.143216, 0, -0.989691, 0, 1, 0, 0.989691, 0, 0.143216, -2.51175, 0.491872, 0.462864)
-mesh = SubResource("PrismMesh_ebc50")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Level"]
-transform = Transform3D(-0.785911, 0, -0.61834, 0, 1, 0, 0.61834, 0, -0.785911, -2.388, 0.492, -3.089)
-mesh = SubResource("PrismMesh_ebc50")
-
-[node name="Sprite3D" type="Sprite3D" parent="SubViewportContainer/SubViewport/Level"]
-transform = Transform3D(0.580703, -0.0355112, 0.813341, 0, 0.999048, 0.0436194, -0.814116, -0.0253299, 0.580151, 3.286, 0.699, 0.525)
-texture_filter = 0
-render_priority = 1
-texture = ExtResource("4_iowfd")
-
-[node name="bed2" parent="SubViewportContainer/SubViewport/Level" instance=ExtResource("6_bwwia")]
-
-[node name="bed_floor2" parent="SubViewportContainer/SubViewport/Level" instance=ExtResource("7_5a481")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.71152, 0, 1.23752)
-
-[node name="bridge_center_stone2" parent="SubViewportContainer/SubViewport/Level" instance=ExtResource("8_1w0q6")]
-
-[node name="bridge_center_stoneRound2" parent="SubViewportContainer/SubViewport/Level" instance=ExtResource("9_8nxxb")]
-
-[node name="bridge_center_wood2" parent="SubViewportContainer/SubViewport/Level" instance=ExtResource("10_6mbjb")]
-
-[node name="bridge_center_woodRound2" parent="SubViewportContainer/SubViewport/Level" instance=ExtResource("11_k1lx0")]
-
-[node name="bridge_side_stone2" parent="SubViewportContainer/SubViewport/Level" instance=ExtResource("12_0fhwt")]
-
-[node name="bridge_side_stoneRound2" parent="SubViewportContainer/SubViewport/Level" instance=ExtResource("13_x2dm4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51845, 1.06587, -1.58478)
-
-[node name="bridge_side_wood2" parent="SubViewportContainer/SubViewport/Level" instance=ExtResource("14_tpnee")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.70524)
-
-[node name="bridge_side_woodRound2" parent="SubViewportContainer/SubViewport/Level" instance=ExtResource("15_x0vls")]
-transform = Transform3D(-0.114833, 0, -4.99868, 0, 5, 0, 4.99868, 0, -0.114833, 5.40751, 0.33248, 8.56512)
-
-[node name="bridge_stone2" parent="SubViewportContainer/SubViewport/Level" instance=ExtResource("16_e3kt7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.65996)
-
-[node name="bridge_stoneNarrow2" parent="SubViewportContainer/SubViewport/Level" instance=ExtResource("17_xmapf")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.934226, 8.41481)
-
-[node name="bridge_stoneRound2" parent="SubViewportContainer/SubViewport/Level" instance=ExtResource("18_o17jr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.91686, 0, 0)
-
-[node name="bridge_stoneRoundNarrow2" parent="SubViewportContainer/SubViewport/Level" instance=ExtResource("19_vyk3x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.36314)
-
-[node name="bridge_wood2" parent="SubViewportContainer/SubViewport/Level" instance=ExtResource("20_3qbyw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.71375, 0, 0)
-
-[node name="FreeLookCamera" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.64519, 4.47576)
-script = ExtResource("20_hi6cn")
-
-[node name="PostProcessing" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/FreeLookCamera"]
-unique_name_in_owner = true
-transform = Transform3D(1, -2.38419e-07, -2.68221e-07, 1.19209e-07, 1, -3.57628e-07, -5.96046e-08, -1.49012e-07, 1, -1.17775, -0.582234, -0.843241)
-extra_cull_margin = 16384.0
-mesh = SubResource("QuadMesh_egxnj")
-
-[node name="Player" parent="." instance=ExtResource("21_l2xu5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.16463, 1, 1.32984)
+[node name="Camera3D" type="Camera3D" parent="Birb"]
+transform = Transform3D(-1, 0, -8.74228e-08, -3.58742e-08, 0.911927, 0.410353, 7.97232e-08, 0.410353, -0.911927, 0, 1.75777, -3.17067)
+script = ExtResource("2_2bvk3")
