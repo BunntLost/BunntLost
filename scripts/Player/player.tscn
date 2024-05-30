@@ -21,28 +21,26 @@ height = 0.5
 radius = 0.05
 height = 0.05
 
-[node name="Player" type="Node3D"]
-
-[node name="PlayerBody" type="CharacterBody3D" parent="."]
+[node name="CharacterBody3D" type="CharacterBody3D"]
 script = ExtResource("1_i2vld")
 
-[node name="BodyMesh" type="MeshInstance3D" parent="PlayerBody"]
+[node name="BodyMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_ucv27")
+skeleton = NodePath("")
 
-[node name="BodyCollision" type="CollisionShape3D" parent="PlayerBody"]
+[node name="BodyCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_ly3ce")
 
-[node name="CylinderMesh" type="MeshInstance3D" parent="PlayerBody"]
+[node name="CylinderMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.00395775, 0.305491, 0.640579)
 mesh = SubResource("CylinderMesh_78s6i")
-skeleton = NodePath("../..")
 
-[node name="LeftEye" type="MeshInstance3D" parent="PlayerBody"]
+[node name="LeftEye" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.147399, 0.591325, 0.509001)
 mesh = SubResource("SphereMesh_mvson")
-skeleton = NodePath("../..")
 
-[node name="RightEye" type="MeshInstance3D" parent="PlayerBody"]
+[node name="RightEye" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0931456, 0.592421, 0.482816)
 mesh = SubResource("SphereMesh_mvson")
+skeleton = NodePath("")
