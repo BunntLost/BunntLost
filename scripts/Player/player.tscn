@@ -1,11 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdydb80mferdi"]
+[gd_scene load_steps=12 format=3 uid="uid://bdydb80mferdi"]
 
 [ext_resource type="Script" path="res://scripts/Player/Player.gd" id="1_i2vld"]
 [ext_resource type="Shader" path="res://scripts/Player/Body.gdshader" id="1_tuygn"]
+[ext_resource type="Script" path="res://scripts/Player/BodyMesh.gd" id="3_v7si7"]
+[ext_resource type="Script" path="res://scripts/Player/CylinderMesh.gd" id="4_1dk1c"]
+[ext_resource type="Script" path="res://scripts/Player/LeftEye.gd" id="4_oobhj"]
+[ext_resource type="Script" path="res://scripts/Player/RightEye.gd" id="5_swjs3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_of8jd"]
 render_priority = 0
 shader = ExtResource("1_tuygn")
+shader_parameter/vibe_offset = 3.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ucv27"]
 material = SubResource("ShaderMaterial_of8jd")
@@ -27,6 +32,7 @@ script = ExtResource("1_i2vld")
 [node name="BodyMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_ucv27")
 skeleton = NodePath("")
+script = ExtResource("3_v7si7")
 
 [node name="BodyCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
@@ -35,12 +41,15 @@ shape = SubResource("CapsuleShape3D_ly3ce")
 [node name="CylinderMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.00395775, 0.305491, 0.640579)
 mesh = SubResource("CylinderMesh_78s6i")
+script = ExtResource("4_1dk1c")
 
 [node name="LeftEye" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.147399, 0.591325, 0.509001)
 mesh = SubResource("SphereMesh_mvson")
+script = ExtResource("4_oobhj")
 
 [node name="RightEye" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0931456, 0.592421, 0.482816)
 mesh = SubResource("SphereMesh_mvson")
 skeleton = NodePath("")
+script = ExtResource("5_swjs3")

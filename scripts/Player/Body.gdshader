@@ -1,7 +1,8 @@
 shader_type spatial;
+uniform float vibe_offset;
 void vertex() {
 	// Called for every vertex the material is visible on.
-	VERTEX.y += cos(10.0*VERTEX.x) * sin(VERTEX.z);
+	VERTEX.y += cos(10.0*VERTEX.x + vibe_offset) * sin(VERTEX.z);
 }
 
 void fragment() {
